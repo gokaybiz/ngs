@@ -10,7 +10,7 @@ RUN echo "alias ll='ls -la -G'" >> /home/training/.profile
 #########
 ### Aptitude packages
 #########
-RUN add-apt-repository ppa:openjdk-r/ppa && apt update && apt install -y --fix-missing \
+RUN apt-get install software-properties-common -y && add-apt-repository ppa:openjdk-r/ppa && apt update && apt install -y --fix-missing \
     wget libghc-zlib-dev libfreetype6-dev libpng-dev libxft-dev \
     libncurses-dev git unzip ftp libzmq3-dev \
     nano python3-dev python3-pip ftp \
