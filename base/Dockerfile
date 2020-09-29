@@ -147,7 +147,7 @@ RUN mkdir /data && \
 #########
 ### JBrowse to easily view biological data formats
 #########
-RUN rm /var/www/html/index.html && \
+RUN mkdir -p /var/www/html && rm /var/www/html/index.html && \
     ln -sf /home/training /var/www/html/home
 WORKDIR /var/www/html
 RUN wget https://github.com/GMOD/jbrowse/releases/download/1.16.6-release/JBrowse-1.16.6.zip && \
@@ -159,7 +159,7 @@ RUN ./setup.sh && \
     chmod a+rwx /var/www/html/JBrowse-1.16.6/data/bam && \
     touch data/tracks.conf && \
     chmod a+rw    /var/www/html/JBrowse-1.16.6/data/tracks.conf && \
-    ln -s /data /var/www/html/data/
+    ln -s /data /var/www/html/
 WORKDIR /
 RUN rm /var/www/html/JBrowse-1.16.6.zip && \
     rm -rf /build/*
