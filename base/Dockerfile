@@ -158,8 +158,7 @@ RUN ./setup.sh && \
     chown -R www-data:www-data /var/www/html && \
     chmod a+rwx /var/www/html/JBrowse-1.16.6/data/bam && \
     touch data/tracks.conf && \
-    chmod a+rw    /var/www/html/JBrowse-1.16.6/data/tracks.conf && \
-    ln -s /data /var/www/html/
+    chmod a+rw    /var/www/html/JBrowse-1.16.6/data/tracks.conf
 WORKDIR /
 RUN rm /var/www/html/JBrowse-1.16.6.zip && \
     rm -rf /build/*
