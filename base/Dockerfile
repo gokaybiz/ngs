@@ -84,16 +84,19 @@ RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.8
     chmod +x FastQC/fastqc && \
     cp -r FastQC /usr/share/ && \
     ln -s /usr/share/FastQC/fastqc /usr/bin/ && \
+    sed -i "s/^assistive_technologies/#assistive_technologies/" /etc/java-8-openjdk/accessibility.properties && \
     wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip && \
     unzip Trimmomatic-0.39.zip && \
     cp -r Trimmomatic-0.39 /usr/share/ && \
     echo '#!/bin/bash\njava -jar /usr/share/Trimmomatic-0.39/trimmomatic-0.39.jar $@' > /usr/bin/trimmomatic && \
     chmod +x /usr/bin/trimmomatic
+    
 
 #########
 ### SortmeRNA
 #########
 WORKDIR /build
+RUN wget https://github.com/biocore/sortmerna/releases/download/v3.0.4/sortmerna-3.0.4-Linux.sh
 COPY sortmerna-3.0.4-Linux.sh /build/sortmerna-3.0.4-Linux.sh
 RUN sh sortmerna-3.0.4-Linux.sh --skip-license --prefix=/usr --exclude-subdir
 RUN mkdir /usr/share/rRNA_databases
@@ -156,7 +159,8 @@ RUN ./setup.sh && \
     chown -R www-data:www-data /var/www/html && \
     chmod a+rwx /var/www/html/JBrowse-1.16.6/data/bam && \
     touch data/tracks.conf && \
-    chmod a+rw    /var/www/html/JBrowse-1.16.6/data/tracks.conf
+    chmod a+rw    /var/www/html/JBrowse-1.16.6/data/tracks.conf && \
+    ln -s /data /var/www/html/data/
 WORKDIR /
 RUN rm /var/www/html/JBrowse-1.16.6.zip && \
     rm -rf /build/*
