@@ -3,13 +3,14 @@
 I am shamelessly copy/pasting the .MD file from the docker hub page which this source is used to build. 
 
 The dockerhub page is [here](https://registry.hub.docker.com/u/bschiffthaler/ngs/)!
+The original github repo is [here](https://github.com/bschiffthaler/ngs)
 
 Build the docker with:
 
 ```
 git clone https://github.com/gokaybiz/ngs
 cd ngs
-docker build -t <my_image_name> base
+docker build -t <my_image_name:version> base
 ```
 
 ----------------------
