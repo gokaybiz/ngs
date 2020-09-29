@@ -96,8 +96,8 @@ RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.8
 ### SortmeRNA
 #########
 WORKDIR /build
-RUN wget https://github.com/biocore/sortmerna/releases/download/v3.0.4/sortmerna-3.0.4-Linux.sh
-RUN sh sortmerna-3.0.4-Linux.sh --skip-license --prefix=/usr --exclude-subdir
+RUN wget https://github.com/biocore/sortmerna/releases/download/v4.2.0/sortmerna-4.2.0-Linux.sh
+RUN sh ortmerna-4.2.0-Linux.sh --skip-license --prefix=/usr --exclude-subdir
 RUN mkdir /usr/share/rRNA_databases
 WORKDIR /usr/share/rRNA_databases
 RUN wget https://raw.githubusercontent.com/biocore/sortmerna/master/data/rRNA_databases/rfam-5.8s-database-id98.fasta && \
@@ -108,10 +108,7 @@ RUN wget https://raw.githubusercontent.com/biocore/sortmerna/master/data/rRNA_da
     wget https://raw.githubusercontent.com/biocore/sortmerna/master/data/rRNA_databases/silva-euk-18s-id95.fasta && \
     wget https://raw.githubusercontent.com/biocore/sortmerna/master/data/rRNA_databases/silva-bac-16s-id90.fasta && \
     wget https://raw.githubusercontent.com/biocore/sortmerna/master/data/rRNA_databases/silva-bac-23s-id98.fasta
-COPY scripts/indexdb.sh /usr/share/rRNA_databases/
-COPY scripts/makeDbList.sh /usr/share/rRNA_databases/
-RUN ./indexdb.sh
-ENV SORTMERNA_DB="/usr/share/rRNA_databases/rfam-5s-database-id98.fasta,/usr/share/rRNA_databases/index/rfam-5s-database-id98:/usr/share/rRNA_databases/silva-euk-28s-id98.fasta,/usr/share/rRNA_databases/index/silva-euk-28s-id98:/usr/share/rRNA_databases/silva-euk-18s-id95.fasta,/usr/share/rRNA_databases/index/silva-euk-18s-id95:/usr/share/rRNA_databases/silva-arc-16s-id95.fasta,/usr/share/rRNA_databases/index/silva-arc-16s-id95:/usr/share/rRNA_databases/silva-bac-16s-id90.fasta,/usr/share/rRNA_databases/index/silva-bac-16s-id90:/usr/share/rRNA_databases/silva-arc-23s-id98.fasta,/usr/share/rRNA_databases/index/silva-arc-23s-id98:/usr/share/rRNA_databases/silva-bac-23s-id98.fasta,/usr/share/rRNA_databases/index/silva-bac-23s-id98:/usr/share/rRNA_databases/rfam-5.8s-database-id98.fasta,/usr/share/rRNA_databases/index/rfam-5.8s-database-id98"
+ADD scripts/makeDbList.sh /usr/share/rRNA_databases/
 ADD scripts/merge-paired-reads.sh /usr/local/bin/
 ADD scripts/unmerge-paired-reads.sh /usr/local/bin/
 WORKDIR /build
