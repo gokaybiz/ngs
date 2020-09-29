@@ -97,7 +97,6 @@ RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.8
 #########
 WORKDIR /build
 RUN wget https://github.com/biocore/sortmerna/releases/download/v3.0.4/sortmerna-3.0.4-Linux.sh
-COPY sortmerna-3.0.4-Linux.sh /build/sortmerna-3.0.4-Linux.sh
 RUN sh sortmerna-3.0.4-Linux.sh --skip-license --prefix=/usr --exclude-subdir
 RUN mkdir /usr/share/rRNA_databases
 WORKDIR /usr/share/rRNA_databases
