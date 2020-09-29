@@ -7,6 +7,8 @@ The dockerhub page is [here](https://registry.hub.docker.com/u/bschiffthaler/ngs
 Build the docker with:
 
 ```
+git clone https://github.com/gokaybiz/ngs
+cd ngs
 docker build -t <my_image_name> base
 ```
 
